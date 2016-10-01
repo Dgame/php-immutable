@@ -1,0 +1,41 @@
+{
+    "name": "dgame/php-immutable",
+    "description": "php immutable",
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://github.com/php-immutable",
+    "keywords": [
+        "Immutable",
+        "Constant"
+    ],
+    "authors": [
+        {
+            "name": "Randy Schuett",
+            "email": "rswhite4@gmail.com",
+            "homepage": "https://github.com/php-immutable"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "dgame/php-ensurance": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ],
+        "files": [
+            "src/functions.php"
+        ],
+        "psr-4": {
+            "Dgame\\Immutable\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.*.*"
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/"
+        ]
+    }
+}
