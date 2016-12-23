@@ -12,6 +12,10 @@ use function Dgame\Ensurance\ensure;
 final class Immutable
 {
     /**
+     * @var mixed
+     */
+    private $ref;
+    /**
      * @var string
      */
     private $file;
@@ -27,13 +31,9 @@ final class Immutable
      * @var bool
      */
     private $used = false;
-    /**
-     * @var mixed
-     */
-    private $ref;
 
     /**
-     * ImmutableRef constructor.
+     * Immutable constructor.
      *
      * @param        $ref
      * @param string $file
@@ -48,6 +48,13 @@ final class Immutable
         $this->ref  = &$ref;
         $this->file = $file;
         $this->line = $line;
+    }
+
+    /**
+     *
+     */
+    private function __clone()
+    {
     }
 
     /**
