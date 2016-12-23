@@ -22,18 +22,18 @@ final class Immutable
     /**
      * @var mixed
      */
-    private $ref;
-    /**
-     * @var mixed
-     */
     private $value;
     /**
      * @var bool
      */
     private $used = false;
+    /**
+     * @var mixed
+     */
+    private $ref;
 
     /**
-     * Immutable constructor.
+     * ImmutableRef constructor.
      *
      * @param        $ref
      * @param string $file
@@ -41,6 +41,10 @@ final class Immutable
      */
     public function __construct(&$ref, string $file, int $line)
     {
+        if (is_object($ref)) {
+            ensure($ref)->isObject()->isNotInstanceOf(self::class)->orThrow('Tried to override immutable');
+        }
+
         $this->ref  = &$ref;
         $this->file = $file;
         $this->line = $line;
@@ -49,17 +53,10 @@ final class Immutable
     /**
      *
      */
-    private function __clone()
-    {
-    }
-
-    /**
-     *
-     */
     public function __destruct()
     {
         enforce($this->used)->orThrow('Immutable was never used, declared in %s on line %d', $this->file, $this->line);
-        ensure($this->ref)->isSameAs($this)->orThrow('Immutable was overriden, declared in %s on line %d', $this->file, $this->line);
+        ensure($this->ref)->isSameAs($this)->orThrow('Immutable was overridden, declared in %s on line %d', $this->file, $this->line);
         ensure($this->value)->isNotNull()->orThrow('Immutable was never assigned, declared in %s on line %d', $this->file, $this->line);
     }
 

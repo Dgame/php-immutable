@@ -4,15 +4,19 @@ use function Dgame\Immutable\let;
 
 require_once 'vendor/autoload.php';
 
+print '<pre>';
+
 function foo()
 {
-    let($b)->be(42);
-    print $b . PHP_EOL;
-    $b = 42;
+    try {
+        let($b)->be(42);
+        print $b . PHP_EOL;
+//        $b = 42;
+    } catch (Exception $e) {
+        print $e->getMessage() . PHP_EOL;
+    }
 }
 
-try {
-    foo();
-} catch (Throwable $t) {
-    print $t->getMessage();
-}
+foo();
+
+print 'end' . PHP_EOL;
