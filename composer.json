@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": ">=7.0",
-        "dgame/php-ensurance": "dev-master"
+        "dgame/php-ensurance": "0.*.*"
     },
     "autoload": {
         "classmap": [
